@@ -1,4 +1,3 @@
-//IMPORT
 import { useEffect } from "react"
 import { useState } from "react"
 export default function AppMain() {
@@ -26,7 +25,7 @@ export default function AppMain() {
                 setMaleActorsList(maleActors); //Setto la mia variabile di stato con i dati delle mia API
 
                 console.log('Ho settato gli attori maschi al caricamento');
-                
+
 
 
             })
@@ -46,9 +45,9 @@ export default function AppMain() {
                 setFemaleActorsList(femaleActors);
 
                 console.log('Ho settato le attrci al caricamento'); //Setto la mia variabile di stato con i dati delle mia API
-                
 
-                
+
+
 
             })
     }, [])
@@ -59,49 +58,64 @@ export default function AppMain() {
         setRender(completeList) //Imposto la variabile che renderizza gli elementi in pagina uguale alla variabile appena creata.
 
         console.log('Ho settato la lista di attori completi');
-        
+
     }, [maleActorsList, femaleActorsList])
 
 
     return (
         /* Main */
-        <main className="mt-5">
-            <button onClick={() => setRender(completeList)}>Tutti</button>
-            <button onClick={() => setRender(maleActorsList)}>Maschi</button>
-            <button onClick={() => setRender(femaleActorsList)}>Femmine</button>
-            {/* Cards section */}
-            <section>
-                <div className="container">
-                    {/* Row */}
-                    <div className="row justify-content-evenly row-gap-4">
+        <main>
 
-                        {render.map((actor, index) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
+            {/* Nav bar */}
+            <ul class="nav justify-content-center p-3 bg-dark-subtle">
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => setRender(completeList)} aria-current="page">All</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => setRender(maleActorsList)}>Man</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => setRender(femaleActorsList)}>Woman</button>
+                </li>
 
-                            /* Cards/Row */
-                            <div key={index} className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
+            </ul>
 
-                                {/* Card title */}
-                                <h5 className="card-title mt-2 text-black">{actor.name}</h5>
-                                <h6 className="card-subtitle mb-2 text-secondary">Born in {actor.birth_year}, {actor.nationality}.</h6>
+                
+                
+                
+                {/* Cards section */}
+                <section className="mt-5">
+                    <div className="container">
+                        {/* Row */}
+                        <div className="row justify-content-evenly row-gap-4">
 
-                                {/* img Card Container */}
-                                <div className="img-box">
-                                    <img className="card-img-top rounded" src={actor.image} alt={`Image of ${actor.name}`} />
+                            {render.map((actor, index) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
+
+                                /* Cards/Row */
+                                <div key={index} className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
+
+                                    {/* Card title */}
+                                    <h5 className="card-title mt-2 text-black">{actor.name}</h5>
+                                    <h6 className="card-subtitle mb-2 text-secondary">Born in {actor.birth_year}, {actor.nationality}.</h6>
+
+                                    {/* img Card Container */}
+                                    <div className="img-box">
+                                        <img className="card-img-top rounded" src={actor.image} alt={`Image of ${actor.name}`} />
+                                    </div>
+
+                                    {/* Card Body */}
+                                    <div className="card-body">
+                                        <p className="card-text rounded"> {actor.biography}<br /><span>Premi: {actor.awards}</span></p>
+                                    </div>
+
                                 </div>
+                            ))}
 
-                                {/* Card Body */}
-                                <div className="card-body">
-                                    <p className="card-text rounded"> {actor.biography}<br /><span>Premi: {actor.awards}</span></p>
-                                </div>
-
-                            </div>
-                        ))}
+                        </div>
 
                     </div>
 
-                </div>
-
-            </section>
+                </section>
         </main>
     )
 }
