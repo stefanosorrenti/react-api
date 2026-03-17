@@ -55,20 +55,22 @@ export default function AppMain() {
             <section>
                 <div className="container">
                     {/* Row */}
-                    <div className="row">
-                    
-                    {/* Card */}
-                    <div class="card col-12 col-sm-6 col-md-4 col-lg-3" style={{width:'18rem'}}>
-                         <h5 class="card-title">Lino Banfi</h5>
-                          <h6 class="card-subtitle mb-2 text-muted ">Nato il data, Nazionalità</h6>
-                        <img className="card-img-top" src="https://cloud.rtl.it/RTLFM/News/Article/1000x1000/lino-banfi-a-rtl-1025-spesso-i-politici-mi-imitano-qfzs9.jpg" alt="Lino" />
-                        <div class="card-body">
-                            <p class="card-text">Descrizione
-                                <span>Premi:</span>
-                            </p>
+                    <div className="row justify-content-evenly row-gap-4">
+
+                    {maleActorsList.map((actor, i) => (
+
+                    <div className="card col-12 col-sm-6 col-md-4 col-lg-3" style={{width:'18rem'}}>
+                         <h5 className="card-title">{actor.name}</h5>
+                          <h6 className="card-subtitle mb-2 text-muted ">Born in {actor.birth_year}, {actor.nationality} </h6>
+                        <img className="card-img-top" src={actor.image} alt= {`Image of ${actor.name}`} />
+                        <div className="card-body">
+                            <p className="card-text"> {actor.biography}<br /><span>Premi: {actor.awards}</span></p>
                             
                         </div>
                     </div>
+                    ))}
+                    
+                    {/* Card */}
                     
 
                     
