@@ -36,11 +36,7 @@ export default function AppMain() {
 
             })
 
-    }, [])
-
-    //FACCIO LO STESSO ESATTO PROCEDIMENTO MA CON L'API DELLE ATTRICI
-
-    useEffect(() => {
+        //FACCIO LO STESSO ESATTO PROCEDIMENTO MA CON L'API DELLE ATTRICI
         fetch(famaleActorsApi)
 
             .then(data => data.json())
@@ -58,41 +54,57 @@ export default function AppMain() {
             })
     }, [])
 
-    useEffect(() => { //Use effect che agisce quando una della mia variabili di stato riceve dei cambiamenti
 
-        setCompleteList([...maleActorsList, ...femaleActorsList])  //Salvo in una variabile di stato il nuovo array con tutte e due le mie variabili di stato precedentemente aggiornate.
-        setRender(completeList) //Imposto la variabile che renderizza gli elementi in pagina uguale alla variabile appena creata.
+    /* useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000); // 2 secondi
+
+        return () => clearTimeout(timer); // cleanup
+    }, [loading]) */
+
+    useEffect(() => { //Use effect che agisce quando una della mia variabili di stato riceve dei cambiamenti
+        const fullList = [...maleActorsList, ...femaleActorsList];
+        setCompleteList(fullList);
+        setRender(fullList);
+        /*  setCompleteList([...maleActorsList, ...femaleActorsList])  //Salvo in una variabile di stato il nuovo array con tutte e due le mie variabili di stato precedentemente aggiornate.
+         setRender(completeList) //Imposto la variabile che renderizza gli elementi in pagina uguale alla variabile appena creata. */
         setTitle('All')
+
         console.log('Ho settato la lista di attori completi');
+        console.log(completeList);
+
 
     }, [maleActorsList, femaleActorsList])
 
-    
-    return (
-        /* Main */
-        <main>
 
-            {/* Nav bar */}
-            <ul class="nav justify-content-center p-3 bg-dark-subtle">
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setRender(completeList); setTitle('All')}} aria-current="page">All</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() =>{ setRender(maleActorsList); setTitle('Mans')}}>Mans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
-                </li>
-                <li class="nav-item">
-                </li>
-                <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setRender(femaleActorsList); setTitle('Womans')}}>Womans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
-                </li>
-                <li class="nav-item">
-                </li>
 
-            </ul>
+  
+        return (
+            /* Main */
+            <main>
 
-                
-                
-                
+                {/* Nav bar */}
+                <ul class="nav justify-content-center p-3 bg-dark-subtle">
+                    <li class="nav-item">
+                        <button className="nav-link" onClick={() => { setRender(completeList); setTitle('All') }} aria-current="page">All</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
+                    </li>
+                    <li class="nav-item">
+                        <button className="nav-link" onClick={() => { setRender(maleActorsList); setTitle('Mans') }}>Mans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <button className="nav-link" onClick={() => { setRender(femaleActorsList); setTitle('Womans') }}>Womans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
+                    </li>
+                    <li class="nav-item">
+                    </li>
+
+                </ul>
+
+
+
+
                 {/* Cards section */}
                 <section className="mt-5">
                     <h2 className="text-white text-center fs-1 my-5">{title.toUpperCase()}</h2>
@@ -102,7 +114,7 @@ export default function AppMain() {
 
                             {render.sort((a, b) => a.name.localeCompare(b.name)).map((actor, index) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
 
-                                
+
                                 /* Cards/Row */
                                 <div key={index} className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
 
@@ -117,10 +129,10 @@ export default function AppMain() {
 
                                     {/* Card Body */}
                                     <div className="card-body">
-                                        <p className="card-text rounded"> 
+                                        <p className="card-text rounded">
                                             {actor.biography}<br />
                                             <span className=" d-block my-2">Premi: {actor.awards}</span>
-                                            </p>
+                                        </p>
                                     </div>
 
                                 </div>
@@ -129,8 +141,9 @@ export default function AppMain() {
                         </div>
 
                     </div>
-
+                    {console.log(completeList)}
                 </section>
-        </main>
-    )
-}
+            </main>
+        )
+    }
+
