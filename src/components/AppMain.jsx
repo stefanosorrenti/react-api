@@ -8,6 +8,7 @@ export default function AppMain() {
     //API
     const maleActorsApi = 'https://lanciweb.github.io/demo/api/actors/' //Salvo il mio endpoint in una variabile
     const famaleActorsApi = 'https://lanciweb.github.io/demo/api/actresses/' //Salvo il mio endpoint in una variabile
+    const [render, setRender] = useState([]) //Variabile che renderizerrà i miei dati nella UI.
     const [maleActorsList, setMaleActorsList] = useState([]) //Creo una variabile di stato per rendere dinamici e salvare esternamente i dati della mia API
     const [femaleActorsList, setFemaleActorsList] = useState([]) //Creo una variabile di stato per rendere dinamici e salvare esternamente i dati della mia API
 
@@ -23,6 +24,9 @@ export default function AppMain() {
                 //console.log('Lista attori:');
                 //console.log(maleActors);
                 setMaleActorsList(maleActors);
+
+                console.log('Ho settato gli attori maschi al caricamento');
+                
 
 
             })
@@ -41,26 +45,39 @@ export default function AppMain() {
                 //console.log(femaleActors);
                 setFemaleActorsList(femaleActors);
 
+                console.log('Ho settato le attrci al caricamento');
+                
+
+                
 
             })
     }, [])
 
+    useEffect(() => {
 
+        const completeList = [...maleActorsList, ...femaleActorsList]
+        setRender(completeList)
+
+        console.log('Ho settato la lista di attori completi');
+        
+    }, [maleActorsList, femaleActorsList])
 
     return (
         /* Main */
         <main className="mt-5">
-
+            <button>Tutti</button>
+            <button>Maschi</button>
+            <button>Femmine</button>
             {/* Cards section */}
             <section>
                 <div className="container">
                     {/* Row */}
                     <div className="row justify-content-evenly row-gap-4">
 
-                        {maleActorsList.map((actor) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
+                        {render.map((actor, index) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
 
                             /* Cards/Row */
-                            <div className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
+                            <div key={index} className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
 
                                 {/* Card title */}
                                 <h5 className="card-title mt-2 text-black">{actor.name}</h5>
@@ -68,7 +85,7 @@ export default function AppMain() {
 
                                 {/* img Card Container */}
                                 <div className="img-box">
-                                     <img className="card-img-top rounded" src={actor.image} alt={`Image of ${actor.name}`} /> 
+                                    <img className="card-img-top rounded" src={actor.image} alt={`Image of ${actor.name}`} />
                                 </div>
 
                                 {/* Card Body */}
@@ -78,13 +95,6 @@ export default function AppMain() {
 
                             </div>
                         ))}
-
-                        
-
-
-
-
-
 
                     </div>
 
