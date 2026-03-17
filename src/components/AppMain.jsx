@@ -1,5 +1,6 @@
 //IMPORT
 import { useEffect } from "react"
+import { useState } from "react"
 export default function AppMain() {
 
     //DATA
@@ -7,7 +8,8 @@ export default function AppMain() {
     //API
     const maleActorsApi = 'https://lanciweb.github.io/demo/api/actors/' //Salvo il mio endpoint in una variabile
     const famaleActorsApi = 'https://lanciweb.github.io/demo/api/actresses/' //Salvo il mio endpoint in una variabile
-
+    const [maleActorsList, setMaleActorsList] = useState([]) //Creo una variabile di stato per rendere dinamici e salvare esternamente i dati della mia API
+    const [femaleActorsList, setFemaleActorsList] = useState ([]) //Creo una variabile di stato per rendere dinamici e salvare esternamente i dati della mia API
 
     //useEffects
 
@@ -18,8 +20,9 @@ export default function AppMain() {
         .then(data => data.json()) //Effetuo il parsing dei dati
 
         .then(maleActors => { //Utilizzo i dati.
-            console.log('Lista attori:');
-            console.log(maleActors);
+            //console.log('Lista attori:');
+            //console.log(maleActors);
+            setMaleActorsList(maleActors);
             
             
         })
@@ -34,12 +37,16 @@ export default function AppMain() {
         .then(data => data.json())
 
         .then(femaleActors => {
-            console.log('Lista attrici');
-            console.log(femaleActors);
+            //console.log('Lista attrici');
+            //console.log(femaleActors);
+            setFemaleActorsList(femaleActors);
             
             
         })
     }, [])
+
+   
+    
     return (
         <main>
             PROVA MAIN
