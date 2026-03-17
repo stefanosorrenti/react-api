@@ -75,13 +75,17 @@ export default function AppMain() {
             {/* Nav bar */}
             <ul class="nav justify-content-center p-3 bg-dark-subtle">
                 <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setRender(completeList); setTitle('All')}} aria-current="page">All</button>
+                    <button className="nav-link" onClick={() => {setRender(completeList); setTitle('All')}} aria-current="page">All</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
                 </li>
                 <li class="nav-item">
-                    <button className="nav-link" onClick={() =>{ setRender(maleActorsList); setTitle('Mans')}}>Mans</button>
+                    <button className="nav-link" onClick={() =>{ setRender(maleActorsList); setTitle('Mans')}}>Mans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
                 </li>
                 <li class="nav-item">
-                    <button className="nav-link" onClick={() => {setRender(femaleActorsList); setTitle('Womans')}}>Womans</button>
+                </li>
+                <li class="nav-item">
+                    <button className="nav-link" onClick={() => {setRender(femaleActorsList); setTitle('Womans')}}>Womans</button> {/* Al click della del bottone esegue le funzioni per renderizzare la pagina */}
+                </li>
+                <li class="nav-item">
                 </li>
 
             </ul>
