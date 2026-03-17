@@ -1,2 +1,53 @@
+/* IMPORT */
 @import url('bootstrap');
 @import url('bootstrap-icons');
+
+
+/*--------GENERICS--------*/
+
+img {
+    max-width: 100%;
+}
+
+body {
+  font-family: 'Libre Baskerville Variable', serif;
+  background-color: #5F5562;
+}
+/*--------UTILITY--------*/
+.card-bgc {
+    background-color: #3a3a3a;
+
+}
+
+/*--------HEADER--------*/
+
+/*--------MAIN--------*/
+
+/* Cards section */
+
+/* Cards texts */
+
+.card-body > p {
+    color: white;
+    font-size: small;
+    background-color: grey;
+    padding: 5px;
+    
+}
+
+p > span {
+    color: black;
+    font-weight: bold;
+}
+
+/* Cards Img */
+
+.img-box {
+    height: 260px;
+}
+
+.img-box > img {
+    height: 100%;
+    object-fit: cover;
+    
+}

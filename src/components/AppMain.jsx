@@ -49,7 +49,7 @@ export default function AppMain() {
 
     return (
         /* Main */
-        <main>
+        <main className="mt-5">
 
             {/* Cards section */}
             <section>
@@ -57,25 +57,34 @@ export default function AppMain() {
                     {/* Row */}
                     <div className="row justify-content-evenly row-gap-4">
 
-                    {maleActorsList.map((actor, i) => (
+                        {maleActorsList.map((actor) => (  //Utilizzo il map per ciclare la mia varaibile di stato e renderizzo il markup in
 
-                    <div className="card col-12 col-sm-6 col-md-4 col-lg-3" style={{width:'18rem'}}>
-                         <h5 className="card-title">{actor.name}</h5>
-                          <h6 className="card-subtitle mb-2 text-muted ">Born in {actor.birth_year}, {actor.nationality} </h6>
-                        <img className="card-img-top" src={actor.image} alt= {`Image of ${actor.name}`} />
-                        <div className="card-body">
-                            <p className="card-text"> {actor.biography}<br /><span>Premi: {actor.awards}</span></p>
-                            
-                        </div>
-                    </div>
-                    ))}
-                    
-                    {/* Card */}
-                    
+                            /* Cards/Row */
+                            <div className="card col-12 col-sm-6 col-md-4 col-lg-3 card-bgc" style={{ width: '18rem' }}>
 
-                    
+                                {/* Card title */}
+                                <h5 className="card-title mt-2 text-black">{actor.name}</h5>
+                                <h6 className="card-subtitle mb-2 text-secondary">Born in {actor.birth_year}, {actor.nationality}.</h6>
 
-                    
+                                {/* img Card Container */}
+                                <div className="img-box">
+                                     <img className="card-img-top rounded" src={actor.image} alt={`Image of ${actor.name}`} /> 
+                                </div>
+
+                                {/* Card Body */}
+                                <div className="card-body">
+                                    <p className="card-text rounded"> {actor.biography}<br /><span>Premi: {actor.awards}</span></p>
+                                </div>
+
+                            </div>
+                        ))}
+
+                        
+
+
+
+
+
 
                     </div>
 
