@@ -1,11 +1,13 @@
+import AppHeader from "./components/AppHeader"
 
 function App() {
-  
+
 
   return (
     <>
-     
+      <AppHeader />
     </>
+
   )
 }
 
